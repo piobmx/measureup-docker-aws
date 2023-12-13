@@ -27,9 +27,9 @@ model_path_dict = {
     "male_osm_model": "./male/male_out_sm_vote.joblib",
     "female_che_model": "./female/female_che_gi_vote.joblib",
     "female_wai_model": "./female/female_wai_gi_gbr.joblib",
-    "female_hip_model": "./female/female_hip_gi_lin.joblib",
-    "female_thi_model": "./female/female_thi_gi_lin.joblib",
-    "female_ank_model": "./female/female_ank_gi_lin.joblib",
+    "female_hip_model": "./female/female_hip_gi_svr.joblib",
+    "female_thi_model": "./female/female_thi_gi_gbr.joblib",
+    "female_ank_model": "./female/female_ank_gi_svr.joblib",
     "female_arm_model": "./female/female_arm_ln_vote.joblib",
     "female_osm_model": "./female/female_out_sm_vote.joblib",
 }
@@ -51,7 +51,8 @@ class BodyPartKey(Enum):
 
 
 def process_model_key(gender: str, body_part: str) -> str:
-    return "_".join([gender, BodyPartKey[body_part]])
+    return "_".join([gender, BodyPartKey[body_part].value])
+
 
 class User:
     def __init__(self, _gender: str, _height: float, _weight: float):
@@ -101,14 +102,13 @@ class SizePredictor:
 
     def load_model(self, body_part: str, gender: str):
         model_name = process_model_key(gender, body_part)
-        print(f"{model_name}")
 
         path_to_model = self.model_path_dict[model_name]
         try:
             model = joblib.load(path_to_model)
             return model
         except FileNotFoundError:
-            print(f"Model not found. Make sure the file '{path_to_model}' exists.")
+            raise(f"Model not found. Make sure the file '{path_to_model}' exists.")
 
     def predict(self, body_part: str, gender: str, user: User):
         # Get selected model
@@ -120,13 +120,7 @@ class SizePredictor:
             prediction = model.predict(features)
             return prediction
         except Exception as e:
-            print(f"Error during prediction: {e}")
+            raise(f"Error during prediction: {e}")
             return None
 
 
-# h = 186.1
-# w = 81.03
-# u = User(_gender="male", _height=h, _weight=w)
-# p = SizePredictor(model_path_dict=model_path_dict)
-# f = p.predict(body_part=BodyPartKey.OUTSEAM.value, gender=GenderKey.MALE.value, user=u)
-# print(f)
