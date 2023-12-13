@@ -24,9 +24,9 @@ https://[endpoint].on.aws/?height=[height]&weight=[weight]&gender=[gender]&part=
 
 *Example* : 
 
-*`https://[endpoint].on.aws/?height=179&weight=84&gender=male&part=arm`
+`curl -XPOST https://[endpoint].on.aws/?height=179&weight=84&gender=male&part=arm`
 
-*`https://[endpoint].on.aws/?height=163&weight=63.5&gender=female&part=ankle`
+`curl -XPOST https://[endpoint].on.aws/?height=163&weight=63.5&gender=female&part=ankle`
 
 ### Returned Object
 
