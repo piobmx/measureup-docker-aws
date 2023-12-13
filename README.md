@@ -18,7 +18,7 @@ This AWS Lambda function is designed to predict the size of parts of body based 
 
 The Lambda function is triggered by a URL with the following structure:
 
-https://[endpoint].on.aws/?height=[height]&weight=[weight]&gender=[gender]&part=[part]
+`https://[endpoint].on.aws/?height=[height]&weight=[weight]&gender=[gender]&part=[part]`
 
 **Note:** Parameters are case-sensitive. Ensure correct casing when providing values for parameters.
 
