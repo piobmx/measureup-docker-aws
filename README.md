@@ -3,41 +3,18 @@
 
 This AWS Lambda function is designed to predict the size of parts of body based on height and weight.
 
-Parameters
+### Parameters
 
-1. Gender 
 
-Description: gender of the target t he individual
-Type: string
-Possible Values: ["male", "female"]
+| Name  | Type | Description | Allowed values | 
+| ------------- | ------------- | ------------- | ------------- |
+| gender  | string  | gender of the target t he individual | ["male", "female"] |
+| part  | string  | indicate which part of the body needs to be predicted | ["chest", "waist", "hip", "thigh", "ankle", "arm", "outseam",] |
+| weight  | float  |weight of the individual in kilogram| |
+| height  | float  |height of the individual in centimeter | |
 
-2. part  
 
-Description: indicate which part of the body needs to be predicted
-
-Type: string
-
-Possible Values:
-	* chest
-	* waist
-	* hip
-	* thigh
-	* ankle
-	* arm
-	* outseam
-
-3. weight
-
-Description: weight of the individual in kilogram
-
-Type: float 
-
-4. height
-
-Description: height of the individual in centimeter
-
-Type: float
-
+### Usage 
 
 The Lambda function is triggered by a URL with the following structure:
 
@@ -51,7 +28,7 @@ https://[endpoint].on.aws/?height=[height]&weight=[weight]&gender=[gender]&part=
 
 *`https://[endpoint].on.aws/?height=163&weight=63.5&gender=female&part=ankle`
 
-## Returned Object
+### Returned Object
 
 The Lambda function returns an object with the following structure:
 
