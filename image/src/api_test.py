@@ -16,13 +16,6 @@ from sklearn.linear_model import LinearRegression
 import joblib
 import xgboost as xgb
 
-# male_scaler_path = "src/male/male_data_scaler.pkl"
-# female_scaler_path = "src/female/female_data_scaler.pkl"
-
-# with open(male_scaler_path, 'rb') as f:
-#     male_scaler = pickle.load(f)
-# with open(female_scaler_path, 'rb') as f:
-#     female_scaler = pickle.load(f)
 
 model_path_dict = {
     "male_che_model": "./male/male_che_gi_vote.joblib",
@@ -48,17 +41,17 @@ class GenderKey(Enum):
 
 
 class BodyPartKey(Enum):
-    CHEST = "che_model"
-    WAIST = "wai_model"
-    HIP = "hip_model"
-    THIGH = "thi_model"
-    ANKLE = "ank_model"
-    ARM = "arm_model"
-    OUTSEAM = "osm_model"
+    chest = "che_model"
+    waist = "wai_model"
+    hip = "hip_model"
+    thigh = "thi_model"
+    ankle = "ank_model"
+    arm = "arm_model"
+    outseam = "osm_model"
 
 
 def process_model_key(gender: str, body_part: str) -> str:
-    return "_".join([gender, body_part])
+    return "_".join([gender, BodyPartKey[body_part]])
 
 class User:
     def __init__(self, _gender: str, _height: float, _weight: float):

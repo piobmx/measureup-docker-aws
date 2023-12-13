@@ -15,7 +15,7 @@ def handler(event, context):
 
 
         gender = str(event['queryStringParameters']['gender'])
-        part = str(event['queryStringParameters']['part']) + "_model"
+        part = str(event['queryStringParameters']['part'])
 
         user_profile = User(
                 _gender=gender,
