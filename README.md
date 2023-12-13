@@ -1,14 +1,101 @@
-# Welcome to your CDK TypeScript project
 
-This is a blank project for CDK development with TypeScript.
+# Measure Lambda function
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+This AWS Lambda function is designed to predict the size of parts of body based on height and weight.
 
-## Useful commands
+Parameters
+1. Gender 
+Description: gender of the target t he individual
+Type: string
+Possible Values: ["male", "female"]
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `npx cdk deploy`  deploy this stack to your default AWS account/region
-* `npx cdk diff`    compare deployed stack with current state
-* `npx cdk synth`   emits the synthesized CloudFormation template
+2. part  
+Description: indicate which part of the body needs to be predicted
+Type: string
+Possible Values:
+	* chest
+	* waist
+	* hip
+	* thigh
+	* ankle
+	* arm
+	* outseam
+
+3. weight
+Description: weight of the individual in kilogram
+Type: float 
+
+4. height
+Description: height of the individual in centimeter
+Type: float
+
+
+The Lambda function is triggered by a URL with the following structure:
+
+https://[endpoint].on.aws/?height=[height]&weight=[weight]&gender=[gender]&part=[part]
+**Note:** Parameters are case-sensitive. Ensure correct casing when providing values for parameters.
+*Example* : 
+*`https://[endpoint].on.aws/?height=179&weight=84&gender=male&part=arm`
+*`https://[endpoint].on.aws/?height=163&weight=63.5&gender=female&part=ankle`
+
+## Returned Object
+
+The Lambda function returns an object with the following structure:
+
+```json
+{
+  "result": {
+    "prediction": 69.38572669366266
+  }
+}
+
+# Measure Lambda function
+
+This AWS Lambda function is designed to predict the size of parts of body based on height and weight.
+
+Parameters
+1. Gender 
+Description: gender of the target t he individual
+Type: string
+Possible Values: ["male", "female"]
+
+2. part  
+Description: indicate which part of the body needs to be predicted
+Type: string
+Possible Values:
+	* chest
+	* waist
+	* hip
+	* thigh
+	* ankle
+	* arm
+	* outseam
+
+3. weight
+Description: weight of the individual in kilogram
+Type: float 
+
+4. height
+Description: height of the individual in centimeter
+Type: float
+
+
+The Lambda function is triggered by a URL with the following structure:
+
+https://[endpoint].on.aws/?height=[height]&weight=[weight]&gender=[gender]&part=[part]
+**Note:** Parameters are case-sensitive. Ensure correct casing when providing values for parameters.
+*Example* : 
+*`https://[endpoint].on.aws/?height=179&weight=84&gender=male&part=arm`
+*`https://[endpoint].on.aws/?height=163&weight=63.5&gender=female&part=ankle`
+
+## Returned Object
+
+The Lambda function returns an object with the following structure:
+
+```json
+{
+  "result": {
+    "prediction": 69.38572669366266
+  }
+}
+
