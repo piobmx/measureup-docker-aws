@@ -4,14 +4,19 @@
 This AWS Lambda function is designed to predict the size of parts of body based on height and weight.
 
 Parameters
+
 1. Gender 
+
 Description: gender of the target t he individual
 Type: string
 Possible Values: ["male", "female"]
 
 2. part  
+
 Description: indicate which part of the body needs to be predicted
+
 Type: string
+
 Possible Values:
 	* chest
 	* waist
@@ -22,11 +27,15 @@ Possible Values:
 	* outseam
 
 3. weight
+
 Description: weight of the individual in kilogram
+
 Type: float 
 
 4. height
+
 Description: height of the individual in centimeter
+
 Type: float
 
 
