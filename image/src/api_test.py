@@ -27,9 +27,9 @@ model_path_dict = {
     "male_osm_model": "./male/male_out_sm_vote.joblib",
     "female_che_model": "./female/female_che_gi_vote.joblib",
     "female_wai_model": "./female/female_wai_gi_gbr.joblib",
-    "female_hip_model": "./female/female_hip_gi_lin.joblib",
-    "female_thi_model": "./female/female_thi_gi_lin.joblib",
-    "female_ank_model": "./female/female_ank_gi_lin.joblib",
+    "female_hip_model": "./female/female_hip_gi_svr.joblib",
+    "female_thi_model": "./female/female_thi_gi_gbr.joblib",
+    "female_ank_model": "./female/female_ank_gi_svr.joblib",
     "female_arm_model": "./female/female_arm_ln_vote.joblib",
     "female_osm_model": "./female/female_out_sm_vote.joblib",
 }
@@ -51,7 +51,8 @@ class BodyPartKey(Enum):
 
 
 def process_model_key(gender: str, body_part: str) -> str:
-    return "_".join([gender, BodyPartKey[body_part]])
+    return "_".join([gender, BodyPartKey[body_part].value])
+
 
 class User:
     def __init__(self, _gender: str, _height: float, _weight: float):
