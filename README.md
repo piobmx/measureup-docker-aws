@@ -8,10 +8,10 @@ This AWS Lambda function is designed to predict the size of parts of body based 
 
 | Name  | Type | Description | Allowed values | 
 | ------------- | ------------- | ------------- | ------------- |
-| gender  | string  | gender of the target t he individual | ["male", "female"] |
-| part  | string  | indicate which part of the body needs to be predicted | ["chest", "waist", "hip", "thigh", "ankle", "arm", "outseam",] |
-| weight  | float  |weight of the individual in kilogram| |
-| height  | float  |height of the individual in centimeter | |
+| `gender`  | `string`  | gender of the target t he individual | `["male", "female"]` |
+| `part`  | `string`  | indicate which part of the body needs to be predicted | `["chest", "waist", "hip", "thigh", "ankle", "arm", "outseam",]` |
+| `weight`  | `float`  |weight of the individual in kilogram| |
+| `height`  | `float`  |height of the individual in centimeter | |
 
 
 ### Usage 
