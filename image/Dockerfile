@@ -1,6 +1,8 @@
 FROM public.ecr.aws/lambda/python:3.11
 
+RUN pip install --upgrade pip
 # Copy requirements.txt
+
 COPY requirements.txt ${LAMBDA_TASK_ROOT}
 COPY src ${LAMBDA_TASK_ROOT}
 

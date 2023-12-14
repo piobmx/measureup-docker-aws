@@ -122,4 +122,3 @@ class SizePredictor:
         except Exception as e:
             raise(f"Error during prediction: {e}")
             return None
-
