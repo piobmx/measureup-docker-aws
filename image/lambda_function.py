@@ -1,9 +1,9 @@
-import json 
+import json, os
 from api_test import User, SizePredictor, model_path_dict
-import os 
 
 def handler(event, context):
     result = {}
+    
     try:
         height = event['queryStringParameters']['height']
         weight = event['queryStringParameters']['weight']

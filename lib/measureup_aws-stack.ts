@@ -8,9 +8,9 @@ export class MeasureupAwsStack extends cdk.Stack {
 		super(scope, id, props);
 		const dockerFunc = new lambda.DockerImageFunction(this, "DockerFunc", {
 			code: lambda.DockerImageCode.fromImageAsset("./image"),
-			memorySize: 128,
+			memorySize: 1024,
 			timeout: cdk.Duration.seconds(10),
-			// architecture: lambda.Architecture.ARM_64,
+			architecture: lambda.Architecture.ARM_64,
 		})
 
 		const functionUrl = dockerFunc.addFunctionUrl({
