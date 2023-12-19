@@ -33,12 +33,14 @@ cd measureup-docker-aws
 
 2. Develop Python machine learning pipeline
 
-If you want to modify the Python code which is used for prediction, open the `image/` directory and you can find the `lambda_function.py` which handles the main ML project.
+To modify the Python code which is used for prediction, check the `image/` folder and you can find the `lambda_function.py` which handles the main ML project.
 
-In the `image/src/` folder, you can find the models for predicting measurements in the `image/src/male` and `image/src/female` folders. These models are used in the `api_test.py` script and you can feel free to modify the script and add your own models.
+The models for predicting measurements are stored in the `image/src/male` and `image/src/female` folders. 
+
+These models are used in the `api_test.py` script and you can feel free to modify the script or add your own models.
+
 
 3. Build the Docker Image:
-
 
 The `image/Dockerfile` includes the instructions for turning the ML app into a Docker image. In the `image/` folder, you can run:
 
@@ -49,7 +51,7 @@ docker build -t  measureup-model:test .
 To run the Docker image locally, run:
 
 ```bash
-docker run -p 8080:8080 measureup-model:test
+docker run -p 9090:8080 measureup-model:test
 ```
 
 
