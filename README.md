@@ -3,9 +3,17 @@
 
 This AWS Lambda function is designed to predict the size of parts of body based on height and weight.
 
-### Parameters
+### Endpoints
 
+**Base URL**: `https://[endpoint].[region].amazonaws.com/v1`
 
+**URL**: `/measure`
+
+**Method**: `POST`
+
+**Authentication**: All requests to the API must include the `x-api-key` header with a valid API key.
+
+**Parameters**:
 | Name  | Type | Description | Allowed values | 
 | ------------- | ------------- | ------------- | ------------- |
 | `gender`  | `string`  | gender of the target t he individual | `["male", "female"]` |
@@ -14,19 +22,21 @@ This AWS Lambda function is designed to predict the size of parts of body based 
 | `height`  | `float`  |height of the individual in centimeter | |
 
 
-### Usage 
 
 The Lambda function is triggered by a URL with the following structure:
 
 `https://[endpoint].on.aws/?height=[height]&weight=[weight]&gender=[gender]&part=[part]`
 
+
 **Note:** Parameters are case-sensitive. Ensure correct casing when providing values for parameters.
 
 *Example* : 
 
-`curl -XPOST https://[endpoint].on.aws/?height=179&weight=84&gender=male&part=arm`
+`curl -X POST -H "x-api-key: {INSERT_YOUR_KEY}" "https://[endpoint].[region].amazonaws.com/v1/measure?height=179&weight=84&gender=male&part=waist"`
 
-`curl -XPOST https://[endpoint].on.aws/?height=163&weight=63.5&gender=female&part=ankle`
+`curl -X POST -H "x-api-key: {INSERT_YOUR_KEY}" "https://[endpoint].[region].amazonaws.com/v1/measure?height=155&weight=59&gender=female&part=chest"`
+
+`curl -X POST -H "x-api-key: {INSERT_YOUR_KEY}" "https://[endpoint].[region].amazonaws.com/v1/measure?height=161.9&weight=62.3&gender=female&part=chest"`
 
 ### Returned Object
 
