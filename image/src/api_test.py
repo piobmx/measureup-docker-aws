@@ -54,6 +54,12 @@ def process_model_key(gender: str, body_part: str) -> str:
     return "_".join([gender, BodyPartKey[body_part].value])
 
 
+def get_gender_models(gender: str):
+    assert gender == "male" or gender == "female"
+    filtered_values = {key: value for key, value in model_path_dict.items() if key.startswith(gender)}
+    return filtered_values
+
+
 class User:
     def __init__(self, _gender: str, _height: float, _weight: float):
         self._gender = _gender
@@ -110,6 +116,11 @@ class SizePredictor:
         except FileNotFoundError:
             raise(f"Model not found. Make sure the file '{path_to_model}' exists.")
 
+    def load_all_models(self, gender: str):
+        all_models = get_gender_models(gender=gender)
+        return all_models
+
+
     def predict(self, body_part: str, gender: str, user: User):
         # Get selected model
         model = self.load_model(body_part=body_part, gender=gender)
@@ -122,3 +133,18 @@ class SizePredictor:
         except Exception as e:
             raise(f"Error during prediction: {e}")
             return None
+
+    def predict_all(self, gender: str, user: User):
+        all_models = self.load_all_models(gender)
+        features = user.get_df()
+        predictions = {}
+        try:
+            for model_name, path_to_model in all_models.items():
+                part = model_name.split("_")[1]
+                model = joblib.load(path_to_model)
+                prediction = model.predict(features)[0]
+                predictions[part] = prediction
+        except Exception as e:
+            raise(f"Error during prediction: {e}")
+
+        return predictions

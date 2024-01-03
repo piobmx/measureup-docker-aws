@@ -24,12 +24,24 @@ def handler(event, context):
                 )
 
         predictor = SizePredictor(model_path_dict=model_path_dict)
-        prediction = predictor.predict(
-                body_part=part, 
-                gender=gender, 
-                user=user_profile
-                )
-        result['prediction'] = prediction[0]
+
+        if part != "all":
+            prediction = predictor.predict(
+                    body_part=part, 
+                    gender=gender, 
+                    user=user_profile
+                    )
+            result['prediction'] = prediction[0]
+
+        elif part == "all":
+            prediction = predictor.predict_all(
+                    gender=gender, 
+                    user=user_profile
+                    )
+            result['prediction'] = prediction
+
+        else:
+            result['prediction'] = None
 
     except KeyError as e:
         return {
